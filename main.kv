@@ -1,0 +1,10 @@
+#:include _mapview.kv
+
+BoxLayout:
+    orientation: 'vertical'
+    MDToolbar:
+        title: "Hospital Finder"
+        right_action_items: [['magnify', lambda x: app.search_menu.open()]]
+        md_bg_color: app.theme_cls.primary_color
+    _MapView:
+        id: mapview
