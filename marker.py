@@ -1,9 +1,9 @@
-from kivy.garden.mapview import MapMarkerPopup
+from kivy_garden.mapview import MapMarkerPopup
 from locationpopupmenu import LocationPopupMenu
 
 
 class Marker(MapMarkerPopup):
-    source = "marker.PNG"
+    source = "mapview-develop\kivy_garden\mapview\icons\marker.png"
     data = []
 
     def on_release(self):

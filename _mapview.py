@@ -1,4 +1,4 @@
-from kivy.garden.mapview import MapView
+from kivy_garden.mapview import MapView
 from kivy.clock import Clock
 from kivy.app import App
 from marker import Marker
@@ -20,11 +20,9 @@ class _MapView(MapView):
         # Get reference to main app and the database cursor
         min_lat, min_lon, max_lat, max_lon = self.get_bbox()
         app = App.get_running_app()
-        # sql_statement = "SELECT * FROM hospital WHERE x > %s AND x < %s AND y > %s AND y < %s "%(min_lon, max_lon, min_lat, max_lat)
-        sql_statement = "SELECT * FROM hospital"
+        sql_statement = "SELECT * FROM hospital WHERE Latitude > %s AND Latitude < %s AND Longitude > %s AND Longitude < %s "%(min_lon, max_lon, min_lat, max_lat)
         app.cursor.execute(sql_statement)
         hospitals = app.cursor.fetchall()
-        # print(hospitals)
         for hospital in hospitals:
             name = hospital[1]
             if name in self.names:
@@ -33,11 +31,11 @@ class _MapView(MapView):
                 self.add(hospital)
 
     def add(self, hospital):
-        # Create the MarketMarker
+        # Create the HospitalMarker
         lat, lon = hospital[3], hospital[4]
         marker = Marker(lat=lat, lon=lon)
         marker.data = hospital
-        # Add the hospitalMarker to the map
+        # Add the HospitalMarker to the map
         self.add_widget(marker)
 
         # Keep track of the marker's name
